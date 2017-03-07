@@ -1,0 +1,13 @@
+{
+    "name": "shortlist-digital/year-taxonomy",
+    "description": "Add a year tag to a post",
+    "type": "wordpress-plugin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Shortlist Studio",
+            "email": "hi@shortlist.studio"
+        }
+    ],
+    "require": {}
+}
