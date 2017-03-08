@@ -34,7 +34,7 @@ class YearTaxonomy
 	}
 	public function remove_year_box()
 	{
-		remove_meta_box('tagsdiv-year', 'post', 'normal');
+		remove_meta_box('tagsdiv-year', 'product', 'normal');
 	}
 	public function add_nice_year_selector($acf_fields, $key)
 	{
@@ -54,7 +54,15 @@ class YearTaxonomy
 			'return_format' => 'object',
 			'multiple' => 0,
 		);
+		$location = array(
+			array (
+				'param' => 'post_type',
+				'operator' => '==',
+				'value' => 'product',
+			),
+		);
 		array_push($acf_fields['fields'], $yearSelector);
+		array_push($acf_fields['location'], $location);
 		return $acf_fields;
 	}
 	public function apply_acf_to_year($acf_fields)
