@@ -32,10 +32,10 @@ class YearTaxonomy
 	{
 		remove_meta_box('tagsdiv-year', 'product', 'normal');
 	}
-	public function add_nice_year_selector($acf_fields, $key)
+	public function add_nice_year_selector()
 	{
 		acf_add_local_field_group(array (
-			'key' => 'group_58c169edae603',
+			'key' => 'group_year',
 			'title' => 'Year',
 			'fields' => array (
 				array (
@@ -45,12 +45,6 @@ class YearTaxonomy
 					'type' => 'taxonomy',
 					'instructions' => 'Select a year for this content',
 					'required' => 1,
-					'conditional_logic' => 0,
-					'default_value' => 'year',
-					'placeholder' => 'year',
-					'prepend' => 'year',
-					'append' => 'year',
-					'maxlength' => '',
 					'taxonomy' => 'year',
 					'field_type' => 'select',
 					'allow_null' => 0,
@@ -58,13 +52,8 @@ class YearTaxonomy
 					'save_terms' => 1,
 					'load_terms' => 1,
 					'return_format' => 'object',
-					'multiple' => 0,
-					'menu_order' => 0,
-					'position' => 'normal',
-					'style' => 'default',
 					'label_placement' => 'top',
 					'instruction_placement' => 'label',
-					'hide_on_screen' => '',
 					'active' => 1,
 					'description' => 'Select a year for this content',
 				),
