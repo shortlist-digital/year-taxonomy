@@ -16,12 +16,8 @@ class YearTaxonomy
 	{
 		add_action('init', array($this, 'register_custom_taxonomy'));
 		add_filter('timber_context', array($this, 'add_year_to_context'), 10, 3);
-		add_filter('agreable_base_theme_article_basic_acf', array($this, 'apply_acf_to_year'), 10, 1);
-		add_filter('agreable_base_theme_category_widgets_acf', array($this, 'apply_acf_to_year'), 10, 1);
-		add_filter('agreable_base_theme_social_media_acf', array($this, 'apply_acf_to_year'), 10, 1);
-		add_filter('agreable_base_theme_html_overrides_acf', array($this, 'apply_acf_to_year'), 10, 1);
 		add_filter('admin_menu', array($this, 'remove_year_box'), 10, 1);
-		add_Filter('agreable_base_theme_article_basic_acf', array($this, 'add_nice_year_selector'), 10, 2);
+		add_Filter('init', array($this, 'add_nice_year_selector'), 10, 2);
 		add_action('wp_head', array($this, 'create_year_reference'));
 	}
 	private function get_year() {
@@ -38,33 +34,53 @@ class YearTaxonomy
 	}
 	public function add_nice_year_selector($acf_fields, $key)
 	{
-		$yearSelector = array(
-			'key' => $key . '_year',
-			'label' => 'Year',
-			'name' => 'year',
-			'type' => 'taxonomy',
-			'instructions' => 'Select a year for this content',
-			'required' => 1,
-			'taxonomy' => 'year',
-			'field_type' => 'select',
-			'allow_null' => 0,
-			'add_term' => 0,
-			'save_terms' => 1,
-			'load_terms' => 1,
-			'return_format' => 'object',
-			'multiple' => 0,
-		);
-		$location = array(
-			array (
-				'param' => 'post_type',
-				'operator' => '==',
-				'value' => 'product',
+		acf_add_local_field_group(array (
+			'key' => 'group_58c169edae603',
+			'title' => 'Year',
+			'fields' => array (
+				array (
+					'key' => 'product_year',
+					'label' => 'Year',
+					'name' => 'year',
+					'type' => 'taxonomy',
+					'instructions' => 'Select a year for this content',
+					'required' => 1,
+					'conditional_logic' => 0,
+					'default_value' => 'year',
+					'placeholder' => 'year',
+					'prepend' => 'year',
+					'append' => 'year',
+					'maxlength' => '',
+					'taxonomy' => 'year',
+					'field_type' => 'select',
+					'allow_null' => 0,
+					'add_term' => 0,
+					'save_terms' => 1,
+					'load_terms' => 1,
+					'return_format' => 'object',
+					'multiple' => 0,
+					'menu_order' => 0,
+					'position' => 'normal',
+					'style' => 'default',
+					'label_placement' => 'top',
+					'instruction_placement' => 'label',
+					'hide_on_screen' => '',
+					'active' => 1,
+					'description' => 'Select a year for this content',
+				),
 			),
-		);
-		array_push($acf_fields['fields'], $yearSelector);
-		array_push($acf_fields['location'], $location);
-		return $acf_fields;
+			'location' => array (
+				array (
+					array (
+						'param' => 'post_type',
+						'operator' => '==',
+						'value' => 'product',
+					),
+				),
+			),
+		));
 	}
+
 	public function apply_acf_to_year($acf_fields)
 	{
 		array_push($acf_fields['year'], array(
