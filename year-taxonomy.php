@@ -2,7 +2,7 @@
 <?php
 /**
 * @wordpress-plugin
-* Plugin Name: year-taxonomy
+* Plugin Name: Year Taxonomy
 * Plugin URI: http://github.com/shortlist-digital/year-taxonomy
 * Description: Add a year tag to a post
 * Version: 1.0.0
@@ -17,7 +17,7 @@ class YearTaxonomy
 		add_action('init', array($this, 'register_custom_taxonomy'));
 		add_filter('timber_context', array($this, 'add_year_to_context'), 10, 3);
 		add_filter('admin_menu', array($this, 'remove_year_box'), 10, 1);
-		add_Filter('init', array($this, 'add_nice_year_selector'), 10, 2);
+		add_filter('init', array($this, 'add_nice_year_selector'), 10, 2);
 		add_action('wp_head', array($this, 'create_year_reference'));
 	}
 	private function get_year() {
@@ -51,11 +51,7 @@ class YearTaxonomy
 					'add_term' => 0,
 					'save_terms' => 1,
 					'load_terms' => 1,
-					'return_format' => 'object',
-					'label_placement' => 'top',
-					'instruction_placement' => 'label',
-					'active' => 1,
-					'description' => 'Select a year for this content',
+					'return_format' => 'object'
 				),
 			),
 			'location' => array (
@@ -63,10 +59,14 @@ class YearTaxonomy
 					array (
 						'param' => 'post_type',
 						'operator' => '==',
-						'value' => 'product',
+						'value' => 'product'
 					),
 				),
 			),
+			'hide_on_screen' => array (
+				0 => 'the_content',
+			),
+			'description' => 'Select a year for this content'
 		));
 	}
 
