@@ -1,4 +1,3 @@
-
 <?php
 /**
 * @wordpress-plugin
